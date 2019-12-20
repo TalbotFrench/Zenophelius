@@ -1,0 +1,60 @@
+﻿@*using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+
+    namespace Zenophelius.Views.Shared
+    {
+        public class _AnchorButton
+        {
+        }
+    }*@
+@using Zenophelius.ViewModels
+
+@model AnchorButtonVM
+
+@switch (Model.ButtonType)
+{
+    case ButtonType.BackToList:
+        <a type="button" class="btn btn-sm buttonbackground" href="@Url.Action(Model.Action)">
+            <span><i class="fa fa-arrow-left"></i></span>
+        </a>
+        break;
+
+    case ButtonType.Create:
+        <a type="button" class="btn btn-sm buttonbackground" href="@Url.Action(Model.Action)">
+            <span><i class="fa fa-plus-square"></i>Create New</span>
+        </a>
+        break;
+
+    case ButtonType.Submit:
+        <button type="submit" value="Save" id="invalidCheck" class="btn btn-sm buttonbackground" href="@Url.Action(Model.Action)">
+            <span><i class="fa fa-upload"></i> Submit</span>
+        </button>
+        break;
+
+    case ButtonType.Delete:
+        <a type="button" class="btn btn-sm buttonbackground" href="@Url.Action(Model.Action, new { id = Model.RouteId })">
+            <span><i class="fa fa-trash"></i></span>
+        </a>
+        break;
+
+    case ButtonType.Details:
+        <a type="button" class="btn btn-sm buttonbackground" href="@Url.Action(Model.Action, new { id = Model.RouteId })">
+            <span><i class="fa fa-info-circle"></i></span>
+        </a>
+        break;
+
+    case ButtonType.Edit:
+        <a type="button" class="btn btn-sm buttonbackground" href="@Url.Action(Model.Action, new { id = Model.RouteId })">
+            <span><i class="fa fa-pencil"></i></span>
+        </a>
+        break;
+
+    case ButtonType.Save: <!-- Made with <button> instead of <a> so that it can submit the form. -->
+        <!-- Model.Action: Button.Save Action is "Index". See Common\AcorButtonGroupHelper.cs -->
+        <button type="submit" value="Save" id="invalidCheck" class="btn btn-sm buttonbackground" href="@Url.Action(Model.Action)">
+            <span><i class="fa fa-save"></i></span>
+        </button>
+        break;
+}
